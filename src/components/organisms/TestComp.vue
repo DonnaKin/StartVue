@@ -2,9 +2,6 @@
     <div class="cart">
         <p>Cart(0)</p>
     </div>
-
-    <div class="product">
-        
         <div class="product">
             <div class="product-image">
                 <img src="@/assets/vmSocks-green.png" alt="A pair of socks">
@@ -32,15 +29,14 @@
                 </ul>
             </div>
         
+            </div>
+                
+            <div class="color-box" style="background-color: green;"></div>
+            <div class="color-box" style="background-color: blue;"></div>
+                
+            <button class="disabledButton">Add to Cart</button>
+            <button class="disabledButton">Clear Cart</button>
         </div>
-        
-        <div class="color-box" style="background-color: green;"></div>
-        <div class="color-box" style="background-color: blue;"></div>
-        
-        <button class="disabledButton">Add to Cart</button>
-        <button class="disabledButton">Clear Cart</button>
-    </div>
-    </div>
     </div>
 </template>
 <script lang="ts" setup >
