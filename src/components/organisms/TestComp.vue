@@ -246,5 +246,4 @@
         font-size: 19px;
         text-transform: uppercase;
     }
-
 </style>
