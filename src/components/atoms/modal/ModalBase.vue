@@ -1,6 +1,6 @@
 <template>
     <component
-        v-if="options.isShow"
+        v-if="options.isShow && options"
         :is="options.component"
         v-bind="options.props"
         v-on="options.events"
