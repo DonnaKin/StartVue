@@ -1,9 +1,10 @@
 <template>
-    <div class="product">
-        <div class="cart">
-            <p>Cart(0)</p>
-        </div>
+    <div class="cart">
+        <p>Cart(0)</p>
+    </div>
 
+    <div class="product">
+        
         <div class="product">
             <div class="product-image">
                 <img src="@/assets/vmSocks-green.png" alt="A pair of socks">
