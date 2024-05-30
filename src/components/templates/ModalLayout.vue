@@ -2,11 +2,11 @@
     <teleport to="#modalLayout">
         <div class="dim"></div>
 
-        <div class="popup_wrap" :style="mstyle">
-            <div class="popup type_01">
+        <div class="popup_wrap">
+            <div class="popup type_01" :style="modalStyle">
                 <strong class="terms_title">{{ title }}</strong>
 
-                <div class="Modal_content_wrap">
+                <div class="Modal_content_wrap" :style="contentStyle">
                     <LoadingBar v-if="isLoading"/>
 
                     <div class="text_box" v-else>
@@ -26,7 +26,7 @@
 /***********************************************************************************************************/
 /*                                             I M P O R T                                                 */
 /***********************************************************************************************************/
-    import { defineProps, toRefs } from 'vue'
+    import { computed, defineProps, toRefs } from 'vue'
     import LoadingBar from '../atoms/etc/LoadingBar.vue';
 
 /***********************************************************************************************************/
@@ -37,13 +37,19 @@
 /***********************************************************************************************************/
 /*                                            C O M P U T E D                                              */
 /***********************************************************************************************************/
-   
+    const modalStyle = computed(() => {
+        return `width: ${width.value}px; height: ${height.value}px`;
+    })
+
+    const contentStyle = computed(() => {
+        return `height: ${height.value - 100}px`;
+    })
 
 /***********************************************************************************************************/
 /*                                              P R O P S                                                  */
 /***********************************************************************************************************/
-    const props = withDefaults(defineProps<{ title: string, mstyle: string, isLoading: boolean }>(), { title: '모달 제목을 넣으세요.', mstyle: 'width: 800px; height: 400px;', isLoading: true });
-    const { title, mstyle, isLoading } = toRefs(props);
+    const props = withDefaults(defineProps<{ title: string, width: number, height: number, isLoading: boolean }>(), { title: '모달 제목을 넣으세요.', width: 800, height: 400, isLoading: true });
+    const { title, width, height, isLoading } = toRefs(props);
 
 
 /***********************************************************************************************************/
