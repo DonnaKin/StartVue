@@ -51,3 +51,30 @@
 
 
 </script>
+
+<style scoped>
+    select {
+        flex-grow: 1;
+        height: 48px;
+        padding: 0 16px;
+        font-size: 16px;
+        color: #333333;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        background-color: #ffffff;
+        transition: border-color 0.3s ease;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 24px;
+        padding-right: 40px;
+    }
+
+    select:focus {
+        outline: none;
+        border-color: #4d90fe;
+    }
+</style>
