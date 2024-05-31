@@ -1,15 +1,5 @@
 <template>
-    <input
-        :type="type"
-        :placeholder="placeholder"
-        v-model="vmodelValue"
-        :style="{ width: width + 'px !important' }"
-        @change="change"
-        @keyup.enter="enter"
-        @keyup.esc="cancel"
-        @focus="focus"
-        @keydown="keydown"
-    />
+    <label :style="{ width: width + 'px' }">{{ text }}</label>
 </template>
 
 <script lang="ts" setup>
@@ -17,11 +7,11 @@
 /*                                             I M P O R T                                                 */
 /***********************************************************************************************************/
     import { defineProps, toRefs } from 'vue'
-	
+
 /***********************************************************************************************************/
 /*                                               D A T A                                                   */
 /***********************************************************************************************************/
-    const vmodelValue = defineModel();
+
 
 /***********************************************************************************************************/
 /*                                            C O M P U T E D                                              */
@@ -31,8 +21,8 @@
 /***********************************************************************************************************/
 /*                                              P R O P S                                                  */
 /***********************************************************************************************************/
-    const props = withDefaults(defineProps<{type: string, placeholder: string, width: number }>(), { type: 'text', placeholder: '', width: 100 });
-    const { type, placeholder, width } = toRefs(props);
+    const props = withDefaults(defineProps<{ text: string, width: number }>(), { text: '문구를 입력하세요.', width: 100 });
+    const { text, width } = toRefs(props);
 
 /***********************************************************************************************************/
 /*                                           L I F E C Y C L E                                             */
@@ -42,53 +32,25 @@
 /***********************************************************************************************************/
 /*                                             M E T H O D                                                 */
 /***********************************************************************************************************/
-
+    
 
 /***********************************************************************************************************/
 /*                                               E M I T                                                   */
 /***********************************************************************************************************/
-    const emit = defineEmits<{ change: [value: any], enter: [value: any], cancel: [], focus: [], keydown: [value: any] }>();
-
-    const change = () => {
-        emit('change', vmodelValue.value);
-    }
-
-    const enter = () => {
-        emit('enter', vmodelValue.value);
-    }
-
-    const cancel = () => {
-        emit('cancel');
-    }
-
-    const focus = () => {
-        emit('focus')
-    }
-
-    const keydown = () => {
-        emit('keydown', vmodelValue.value)
-    }
+    
 
 /***********************************************************************************************************/
 /*                                              W A T C H                                                  */
 /***********************************************************************************************************/
+
 </script>
-
 <style scoped>
-    input {
-        flex-grow: 1;
-        height: 48px;
-        padding: 0 16px;
+    label {
+        display: inline-block;
         font-size: 16px;
+        font-weight: 500;
         color: #333333;
-        border: 1px solid #d9d9d9;
-        border-radius: 4px;
-        background-color: #ffffff;
-        transition: border-color 0.3s ease;
-    }
-
-    input:focus {
-        outline: none;
-        border-color: #4d90fe;
+        margin-right: 16px;
+        flex-shrink: 0;
     }
 </style>

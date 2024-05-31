@@ -17,6 +17,8 @@
                 <slot name="footer"></slot>
             </div>
         </div>
+
+        <slot name="modal"></slot>
     </teleport>
 </template>
 
@@ -74,6 +76,6 @@
     .popup_wrap .popup { display: block; z-index: 250; }
     .popup_wrap .popup.active { display: block; } 
     .popup_wrap .popup.type_01 { position: absolute; left: 50%; transform: translate(-50%, -50%); width: calc(100% - 48px); background-color: #ffffff; text-align: center; padding: 24px; border-radius: 5px; } 
-    .popup_wrap .popup.type_01 .Modal_content_wrap { width: 100%; height: 100%; padding: 12px; background: #f4f4f4; margin-top: 20px; overflow-y: scroll; }
+    .popup_wrap .popup.type_01 .Modal_content_wrap { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; padding: 12px; background: #f4f4f4; margin-top: 20px; overflow-y: scroll; }
     .popup_wrap .popup.type_01 .title { font-weight: 700; font-size: 30px; line-height: 24px; color: #333333; } 
 </style>
