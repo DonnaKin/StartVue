@@ -1,5 +1,5 @@
 <template>
-    <select v-model="selectedValue" @change="selectValue">
+    <select v-model="vmodelValue">
         <option v-for="item in dropdownList" :value="item.value">
             {{ item.displayTxt }}
         </option>
@@ -10,12 +10,12 @@
 /***********************************************************************************************************/
 /*                                             I M P O R T                                                 */
 /***********************************************************************************************************/
-    import { ref, onMounted, defineProps, toRefs } from 'vue'
+    import { onMounted, defineProps, toRefs } from 'vue'
 	
 /***********************************************************************************************************/
 /*                                               D A T A                                                   */
 /***********************************************************************************************************/
-    const selectedValue = ref<any>('');
+    const vmodelValue = defineModel();
 
 /***********************************************************************************************************/
 /*                                            C O M P U T E D                                              */
@@ -32,7 +32,7 @@
 /*                                           L I F E C Y C L E                                             */
 /***********************************************************************************************************/
     onMounted(() => {
-        selectedValue.value = dropdownList.value[0].value;
+        vmodelValue.value = dropdownList.value[0].value;
     })
 
 /***********************************************************************************************************/
@@ -43,11 +43,7 @@
 /***********************************************************************************************************/
 /*                                               E M I T                                                   */
 /***********************************************************************************************************/
-    const emit = defineEmits<{ selectValue: [value: any] }>();
-
-    const selectValue = () => {
-        emit('selectValue', selectedValue.value)
-    }
+    
 
 /***********************************************************************************************************/
 /*                                              W A T C H                                                  */
@@ -55,3 +51,30 @@
 
 
 </script>
+
+<style scoped>
+    select {
+        flex-grow: 1;
+        height: 48px;
+        padding: 0 16px;
+        font-size: 16px;
+        color: #333333;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        background-color: #ffffff;
+        transition: border-color 0.3s ease;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 24px;
+        padding-right: 40px;
+    }
+
+    select:focus {
+        outline: none;
+        border-color: #4d90fe;
+    }
+</style>
