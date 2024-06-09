@@ -3,9 +3,7 @@
         <p>Cart(0)</p>
     </div>
     <div class="product">
-        <div class="product-image">
-            <img src="@/assets/vmSocks-green.png" alt="A pair of socks">
-        </div>
+        <ImgComp :src="imageSrc" />
         <div class="product-info">
             <h1>Vue Mastery Socks</h1>
             <p>➡ Vue Mastery Socks are on sale!</p>
@@ -31,8 +29,8 @@
 
             </div>
 
-            <div class="color-box" style="background-color: green;"></div>
-            <div class="color-box" style="background-color: blue;"></div>
+            <div class="color-box" style="background-color: green;" @click="ChangeImg('green')" ></div>
+            <div class="color-box" style="background-color: blue;" @click="ChangeImg('blue')"></div>
 
             <button class="disabledButton">Add to Cart</button>
             <button class="disabledButton">Clear Cart</button>
@@ -44,11 +42,15 @@
 /*                                             I M P O R T                                                 */
 /***********************************************************************************************************/
 
+import {ref, onMounted} from 'vue';
+import ImgComp from '@/components/organisms/ImgComp.vue';
+
+import defaultImg from '@/assets/vmSocks-green.png';
 
 /***********************************************************************************************************/
 /*                                               D A T A                                                   */
 /***********************************************************************************************************/
-
+const imageSrc = ref<string>(defaultImg);
 
 /***********************************************************************************************************/
 /*                                            C O M P U T E D                                              */
@@ -68,7 +70,14 @@
 /***********************************************************************************************************/
 /*                                             M E T H O D                                                 */
 /***********************************************************************************************************/
-
+const ChangeImg = (color:string) => {
+    if(color == "blue"){
+        imageSrc.value = require('@/assets/vmSocks-blue.png');
+    }
+    else{
+        imageSrc.value = require('@/assets/vmSocks-green.png');
+    }
+}
 
 /***********************************************************************************************************/
 /*                                               E M I T                                                   */
