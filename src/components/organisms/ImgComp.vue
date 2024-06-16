@@ -1,6 +1,6 @@
 <template>
     <div class="product-image">
-        <img :src="src" alt="A pair of socks">
+        <img :src="require(`@/assets/vmSocks-${src}.png`)" alt="A pair of socks">
     </div>
 </template>
 
@@ -22,7 +22,7 @@ import {defineProps, toRefs} from 'vue';
 /***********************************************************************************************************/
 /*                                              P R O P S                                                  */
 /***********************************************************************************************************/
-const props = withDefaults(defineProps<{ src: string }>(), { src: '' });
+const props = withDefaults(defineProps<{ src: string }>(), { src: 'green' });
 const { src } = toRefs(props);
 
 /***********************************************************************************************************/

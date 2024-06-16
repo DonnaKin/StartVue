@@ -1,6 +1,6 @@
 <template>
     <div class="cart">
-        <p>Cart(0)</p>
+        <p>Cart({{ count }})</p>
     </div>
     <div class="product">
         <ImgComp :src="imageSrc" />
@@ -11,15 +11,15 @@
             <div>
 
                 <ul>
-                    <span class="tabs activeTab">Shipping</span>
-                    <span class="tabs">Details</span>
+                    <span :class="'tabs' + [shipping ? ' activeTab' : '']" @click="ShowShipping(true)">Shipping</span>
+                    <span :class="'tabs' + [shipping ? '' : ' activeTab']" @click="ShowShipping(false)">Details</span>
                 </ul>
 
-                <div style="">
+                <div v-if="shipping">
                     <p>$250</p>
                 </div>
 
-                <div style="display: none;">
+                <div v-else>
                     <ul>
                         <li>80% cotton</li>
                         <li>20% polyester</li>
@@ -32,8 +32,8 @@
             <div class="color-box" style="background-color: green;" @click="ChangeImg('green')" ></div>
             <div class="color-box" style="background-color: blue;" @click="ChangeImg('blue')"></div>
 
-            <button class="disabledButton">Add to Cart</button>
-            <button class="disabledButton">Clear Cart</button>
+            <button :class="count >= maximum ? 'disabledButton' : ''" @click="addToCart()" :disabled="count >= maximum ? true : false">Add to Cart</button>
+            <button :class="count > 0 ? '' : 'disabledButton'" @click="clearToCart()">Clear Cart</button>
         </div>
     </div>
 </template>
@@ -45,12 +45,14 @@
 import {ref, onMounted} from 'vue';
 import ImgComp from '@/components/organisms/ImgComp.vue';
 
-import defaultImg from '@/assets/vmSocks-green.png';
-
 /***********************************************************************************************************/
 /*                                               D A T A                                                   */
 /***********************************************************************************************************/
-const imageSrc = ref<string>(defaultImg);
+const imageSrc = ref<string>('green');
+const shipping = ref<boolean>(true);
+
+const count = ref<number>(0);
+const maximum = ref<number>(5);
 
 /***********************************************************************************************************/
 /*                                            C O M P U T E D                                              */
@@ -72,13 +74,29 @@ const imageSrc = ref<string>(defaultImg);
 /***********************************************************************************************************/
 const ChangeImg = (color:string) => {
     if(color == "blue"){
-        imageSrc.value = require('@/assets/vmSocks-blue.png');
+        imageSrc.value = 'blue';
     }
     else{
-        imageSrc.value = require('@/assets/vmSocks-green.png');
+        imageSrc.value = 'green';
     }
 }
 
+const ShowShipping = (show:boolean) => {
+    if(show){
+        shipping.value = true;
+    }
+    else{
+        shipping.value = false;
+    }
+}
+
+const addToCart = () => {
+    count.value = count.value + 1;
+}
+
+const clearToCart = () => {
+    count.value = 0;
+}
 /***********************************************************************************************************/
 /*                                               E M I T                                                   */
 /***********************************************************************************************************/
